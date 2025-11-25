@@ -12,7 +12,6 @@ export default function Footer() {
                 alt="GreySable"
                 width={20}
                 height={20}
-                style={{ backgroundColor: "#000000" }}
               />
               <span className="text-sm font-bold tracking-tight uppercase">
                 Grey<span className="text-grey-500">Sable</span>
