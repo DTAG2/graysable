@@ -7,14 +7,13 @@ export default function Footer() {
         <div className="grid md:grid-cols-3 gap-12">
           <div>
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 flex items-center justify-center" style={{ backgroundColor: "#000000" }}>
-                <img
-                  src="/greysable/logo.png"
-                  alt="GreySable"
-                  width={20}
-                  height={20}
-                />
-              </div>
+              <img
+                src="/greysable/logo.png"
+                alt="GreySable"
+                width={20}
+                height={20}
+                style={{ backgroundColor: "#000000" }}
+              />
               <span className="text-sm font-bold tracking-tight uppercase">
                 Grey<span className="text-grey-500">Sable</span>
               </span>

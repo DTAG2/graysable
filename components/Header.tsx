@@ -16,15 +16,14 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-40 bg-black/95 backdrop-blur-sm border-b border-grey-800">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-5 h-5 flex items-center justify-center" style={{ backgroundColor: "#000000" }}>
-            <img
-              src="/greysable/logo.png"
-              alt="GreySable"
-              width={20}
-              height={20}
-              className="group-hover:opacity-90 transition-opacity"
-            />
-          </div>
+          <img
+            src="/greysable/logo.png"
+            alt="GreySable"
+            width={20}
+            height={20}
+            className="group-hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: "#000000" }}
+          />
           <span className="text-sm font-bold tracking-tight uppercase">
             Grey<span className="text-grey-500">Sable</span>
           </span>
