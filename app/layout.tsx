@@ -11,6 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://dtag2.github.io/greysable"),
   title: "GreySable | Custom Automation & AI Solutions",
   description: "GreySable specializes in custom automation, vision AI, and hardware design. We build intelligent systems that drive results.",
   keywords: ["automation", "AI", "vision AI", "hardware design", "custom software", "opsis"],
@@ -19,6 +20,20 @@ export const metadata: Metadata = {
     title: "GreySable | Custom Automation & AI Solutions",
     description: "We build intelligent systems that drive results.",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 1200,
+        alt: "GreySable",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary",
+    title: "GreySable | Custom Automation & AI Solutions",
+    description: "We build intelligent systems that drive results.",
+    images: ["/logo.png"],
   },
 };
 
