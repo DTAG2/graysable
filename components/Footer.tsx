@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <div className="w-5 h-5 flex items-center justify-center" style={{ backgroundColor: "#000000" }}>
                 <img
-                  src="/logo.png"
+                  src="/greysable/logo.png"
                   alt="GreySable"
                   width={20}
                   height={20}

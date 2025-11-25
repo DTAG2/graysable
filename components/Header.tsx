@@ -18,7 +18,7 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-5 h-5 flex items-center justify-center" style={{ backgroundColor: "#000000" }}>
             <img
-              src="/logo.png"
+              src="/greysable/logo.png"
               alt="GreySable"
               width={20}
               height={20}
