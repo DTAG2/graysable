@@ -5,7 +5,7 @@ const services = [
     title: "Custom Automation",
     number: "01",
     description:
-      "End-to-end automation systems tailored to your operation. Workflows, integrations, and custom logic—built for production, not demos.",
+      "End-to-end automation systems tailored to your operation. Workflows, integrations, and custom logic built for production.",
   },
   {
     title: "Hardware Design",

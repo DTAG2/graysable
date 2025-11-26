@@ -33,7 +33,7 @@ export default function Hero() {
 
         <div className="animate-fade-in animation-delay-100">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] uppercase">
-            Full-Stack
+            Precision
             <br />
             <span className="text-gray-500">Automation</span>
           </h1>
@@ -41,7 +41,7 @@ export default function Hero() {
 
         <div className="mt-12 max-w-xl animate-fade-in animation-delay-200">
           <p className="text-lg text-gray-400 leading-relaxed">
-            Software, embedded systems, and hardware—integrated intelligently.
+            Software, embedded systems, and hardware integrated intelligently.
             Custom automation built to your needs.
           </p>
         </div>
