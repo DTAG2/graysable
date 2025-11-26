@@ -18,7 +18,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 text-sm text-gray-500 leading-relaxed max-w-xs">
-              Precision automation systems. Built to last.
+              Custom automation. Integrated intelligently.
             </p>
           </div>
 

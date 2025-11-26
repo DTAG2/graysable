@@ -5,13 +5,13 @@ const services = [
     title: "Custom Automation",
     number: "01",
     description:
-      "End-to-end automation systems. Vision, workflows, integrations—whatever your operation needs to run faster with less manual intervention.",
+      "End-to-end automation systems tailored to your operation. Workflows, integrations, and custom logic—built for production, not demos.",
   },
   {
     title: "Hardware Design",
     number: "02",
     description:
-      "Full-stack hardware. PCB design, FPGA development, embedded systems. Integrated with your automation, built for production.",
+      "PCB design, FPGA development, embedded systems. From prototype to production-ready hardware that integrates with your stack.",
   },
 ];
 

@@ -4,7 +4,7 @@ import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact | GraySable",
-  description: "Get in touch with GraySable. Let's discuss how we can help with your automation and AI needs.",
+  description: "Get in touch with GraySable. Tell us about your automation project.",
 };
 
 export default function ContactPage() {
@@ -18,13 +18,13 @@ export default function ContactPage() {
               Contact
             </span>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tighter uppercase leading-[0.9]">
-              Let&apos;s Build
+              Get In
               <br />
-              <span className="text-gray-500">Together</span>
+              <span className="text-gray-500">Touch</span>
             </h1>
             <p className="mt-10 text-xl text-gray-400 max-w-xl leading-relaxed">
-              Have a project in mind? We&apos;d love to hear about it. Reach out
-              and let&apos;s explore how we can help.
+              Tell us about your project. We&apos;ll get back to you within 24-48 hours
+              with initial thoughts and next steps.
             </p>
           </AnimatedSection>
         </div>

@@ -4,20 +4,20 @@ import TeamMember from "@/components/TeamMember";
 
 export const metadata: Metadata = {
   title: "About | GraySable",
-  description: "Meet the team behind GraySable. We build intelligent automation systems and AI solutions.",
+  description: "GraySable integrates software, embedded systems, and hardware into custom automation solutions. Built to your specific needs.",
 };
 
 const teamMembers = [
   {
     name: "Team Member 1",
     role: "Co-Founder",
-    bio: "Passionate about building systems that scale. Brings deep expertise in automation and system architecture to every project.",
+    bio: "Background in embedded systems, FPGA development, and signal processing. Handles hardware design and low-level systems.",
     initials: "TM",
   },
   {
     name: "Team Member 2",
     role: "Co-Founder",
-    bio: "Focused on the intersection of AI and practical business applications. Believes in building technology that delivers real results.",
+    bio: "Background in automation, databases, and software architecture. Handles system design and software integration.",
     initials: "TM",
   },
 ];
@@ -33,16 +33,13 @@ export default function AboutPage() {
               About
             </span>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tighter uppercase leading-[0.9]">
-              Building
+              Full-Stack
               <br />
-              The Future
-              <br />
-              <span className="text-gray-500">Thoughtfully</span>
+              <span className="text-gray-500">Automation</span>
             </h1>
             <p className="mt-10 text-xl text-gray-400 max-w-xl leading-relaxed">
-              We&apos;re a small team with big ambitions. Our focus is simple:
-              build technology that works, scales, and delivers measurable
-              outcomes.
+              We integrate software, embedded systems, and hardware into custom automation solutions.
+              From PCB design to FPGA development—built to your specific needs.
             </p>
           </AnimatedSection>
         </div>
@@ -58,11 +55,11 @@ export default function AboutPage() {
               <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-600 block mb-4">
                 01
               </span>
-              <h2 className="text-2xl font-bold uppercase tracking-tight mb-6">Our Mission</h2>
+              <h2 className="text-2xl font-bold uppercase tracking-tight mb-6">What We Do</h2>
               <p className="text-gray-400 leading-relaxed">
-                Ship systems that work. No bloat, no feature creep. We build
-                automation that accelerates your mission—fast deployment,
-                reliable operation, measurable results.
+                We integrate software, embedded systems, and hardware into automation solutions.
+                Whether you need custom PCBs, FPGA development, or system integration—we
+                build to your specific requirements.
               </p>
             </AnimatedSection>
 
@@ -70,11 +67,11 @@ export default function AboutPage() {
               <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-600 block mb-4">
                 02
               </span>
-              <h2 className="text-2xl font-bold uppercase tracking-tight mb-6">Our Approach</h2>
+              <h2 className="text-2xl font-bold uppercase tracking-tight mb-6">How We Work</h2>
               <p className="text-gray-400 leading-relaxed">
-                Understand the objective. Design the system. Execute. We cut
-                through complexity to deliver solutions that solve the actual
-                problem—not the one that&apos;s easiest to build.
+                You work directly with engineers. We scope the problem, design the
+                system, build it, and deploy it. No account managers, no layers of
+                project management. Direct communication throughout.
               </p>
             </AnimatedSection>
           </div>
@@ -88,10 +85,10 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-6">
           <AnimatedSection className="mb-16">
             <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-600 block mb-4">
-              Values
+              Capabilities
             </span>
             <h2 className="text-4xl font-bold tracking-tighter uppercase">
-              What Drives Us
+              Technical Stack
             </h2>
           </AnimatedSection>
 
@@ -99,21 +96,21 @@ export default function AboutPage() {
             {[
               {
                 number: "01",
-                title: "Precision",
+                title: "Software",
                 description:
-                  "Every line of code, every system design, every decision is made with intention and care.",
+                  "Automation logic, workflows, integrations, dashboards. We write the code that controls your systems.",
               },
               {
                 number: "02",
-                title: "Transparency",
+                title: "Embedded",
                 description:
-                  "No black boxes. We believe in clear communication and demystifying technology for our clients.",
+                  "Firmware, microcontrollers, real-time systems. The layer between your software and hardware.",
               },
               {
                 number: "03",
-                title: "Outcomes",
+                title: "Hardware",
                 description:
-                  "Technology is only valuable if it delivers results. We measure success by your success.",
+                  "PCB design, FPGA development, custom circuits. Physical hardware designed for your specific application.",
               },
             ].map((value, index) => (
               <AnimatedSection key={value.title} delay={index * 0.1}>
@@ -145,7 +142,7 @@ export default function AboutPage() {
             </span>
             <h2 className="text-4xl font-bold tracking-tighter uppercase">The Team</h2>
             <p className="mt-4 text-gray-500">
-              The people behind the precision
+              Engineers who build both software and hardware.
             </p>
           </AnimatedSection>
 

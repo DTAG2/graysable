@@ -33,18 +33,16 @@ export default function Hero() {
 
         <div className="animate-fade-in animation-delay-100">
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.9] uppercase">
-            Precision
+            Full-Stack
             <br />
-            <span className="text-gray-500">Systems</span>
-            <br />
-            Built to Last
+            <span className="text-gray-500">Automation</span>
           </h1>
         </div>
 
         <div className="mt-12 max-w-xl animate-fade-in animation-delay-200">
           <p className="text-lg text-gray-400 leading-relaxed">
-            We engineer intelligent automation systems that anticipate, adapt, and deliver.
-            Concrete solutions for complex problems.
+            Software, embedded systems, and hardware—integrated intelligently.
+            Custom automation built to your needs.
           </p>
         </div>
 
@@ -53,14 +51,14 @@ export default function Hero() {
             href="/contact"
             className="group px-8 py-4 bg-white text-black font-medium uppercase tracking-wider text-sm hover:bg-gray-200 transition-colors duration-150"
           >
-            Start Project
+            Tell Us What You Need
             <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform duration-150">&rarr;</span>
           </Link>
           <Link
             href="/about"
             className="px-8 py-4 border border-gray-700 text-white font-medium uppercase tracking-wider text-sm hover:bg-gray-900 hover:border-gray-600 transition-colors duration-150"
           >
-            Learn More
+            How We Work
           </Link>
         </div>
       </div>

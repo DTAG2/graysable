@@ -32,10 +32,10 @@ export default function Home() {
               </p>
               <ul className="mt-10 space-y-4">
                 {[
-                  "Fast deployment, lasting results",
-                  "Built for reliability, not demos",
-                  "Direct communication, no overhead",
-                  "Outcomes over process",
+                  "Full stack — software, embedded, and hardware integrated",
+                  "Built for production, not demos",
+                  "You talk to engineers, not account managers",
+                  "We only take interesting problems",
                 ].map((item, index) => (
                   <li key={item} className="flex items-center gap-4">
                     <span className="text-xs font-mono text-gray-600">
