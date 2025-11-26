@@ -19,6 +19,8 @@ export default function ParticleField() {
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const animationRef = useRef<number | null>(null);
+  const lastTimeRef = useRef<number>(0);
+  const timeRef = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,12 +28,6 @@ export default function ParticleField() {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      initParticles();
-    };
 
     const initParticles = () => {
       particlesRef.current = [];
@@ -52,23 +48,60 @@ export default function ParticleField() {
       }
     };
 
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        mouseRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
     };
 
     const handleMouseLeave = () => {
       mouseRef.current = { x: -1000, y: -1000 };
     };
 
-    let time = 0;
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Page is hidden, pause animation
+        if (animationRef.current) {
+          cancelAnimationFrame(animationRef.current);
+          animationRef.current = null;
+        }
+      } else {
+        // Page is visible again, reset timing to prevent jump
+        lastTimeRef.current = 0;
+        if (!animationRef.current) {
+          animationRef.current = requestAnimationFrame(animate);
+        }
+      }
+    };
 
-    const animate = () => {
+    const animate = (timestamp: number) => {
+      // Calculate delta time, cap it to prevent large jumps
+      if (lastTimeRef.current === 0) {
+        lastTimeRef.current = timestamp;
+      }
+
+      const deltaTime = Math.min(timestamp - lastTimeRef.current, 50); // Cap at 50ms
+      lastTimeRef.current = timestamp;
+
+      // Increment time smoothly
+      timeRef.current += deltaTime * 0.06;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      time += 1;
 
       const mouse = mouseRef.current;
       const interactionRadius = 100;
       const pushStrength = 2;
+      const time = timeRef.current;
 
       particlesRef.current.forEach((particle) => {
         // Gentle snowflake drift
@@ -77,7 +110,7 @@ export default function ParticleField() {
         particle.x += particle.velocityX + sway * 0.2;
         particle.y += particle.velocityY;
 
-        // Mouse interaction - push particles away
+        // Mouse/touch interaction - push particles away
         const dx = mouse.x - particle.x;
         const dy = mouse.y - particle.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -112,13 +145,20 @@ export default function ParticleField() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
     window.addEventListener("mouseleave", handleMouseLeave);
-    animate();
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    // Start animation
+    lastTimeRef.current = 0;
+    animationRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
