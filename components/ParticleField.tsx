@@ -6,7 +6,7 @@ interface Particle {
   x: number;
   y: number;
   size: number;
-  baseOpacity: number;
+  opacity: number;
   velocityX: number;
   velocityY: number;
   drift: number;
@@ -35,57 +35,18 @@ export default function ParticleField() {
 
     const initParticles = () => {
       particlesRef.current = [];
+      const particleCount = Math.floor((canvas.width * canvas.height) / 10000);
 
-      // Very dense particles at the top (smoke/fog effect)
-      const topDenseCount = Math.floor((canvas.width * 400) / 800);
-      for (let i = 0; i < topDenseCount; i++) {
-        // Heavily weighted toward top
-        const yWeight = Math.pow(Math.random(), 0.3);
-        const y = yWeight * canvas.height * 0.5;
-
+      for (let i = 0; i < particleCount; i++) {
         particlesRef.current.push({
           x: Math.random() * canvas.width,
-          y,
-          size: Math.random() * 2.5 + 0.5,
-          baseOpacity: Math.random() * 0.5 + 0.2,
-          velocityX: (Math.random() - 0.5) * 0.15,
-          velocityY: Math.random() * 0.12 + 0.03,
-          drift: Math.random() * 1.2 - 0.6,
-          driftSpeed: Math.random() * 0.006 + 0.002,
-          driftOffset: Math.random() * Math.PI * 2,
-        });
-      }
-
-      // Medium density in upper-middle area
-      const midCount = Math.floor((canvas.width * 200) / 800);
-      for (let i = 0; i < midCount; i++) {
-        const y = Math.random() * canvas.height * 0.6;
-
-        particlesRef.current.push({
-          x: Math.random() * canvas.width,
-          y,
-          size: Math.random() * 2 + 0.4,
-          baseOpacity: Math.random() * 0.35 + 0.1,
+          y: Math.random() * canvas.height,
+          size: Math.random() * 2 + 0.5,
+          opacity: Math.random() * 0.3 + 0.1,
           velocityX: (Math.random() - 0.5) * 0.2,
           velocityY: Math.random() * 0.15 + 0.05,
           drift: Math.random() * 1.5 - 0.75,
           driftSpeed: Math.random() * 0.008 + 0.003,
-          driftOffset: Math.random() * Math.PI * 2,
-        });
-      }
-
-      // Scattered particles throughout (lighter, ambient)
-      const scatteredCount = Math.floor((canvas.width * canvas.height) / 12000);
-      for (let i = 0; i < scatteredCount; i++) {
-        particlesRef.current.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 1.8 + 0.4,
-          baseOpacity: Math.random() * 0.2 + 0.05,
-          velocityX: (Math.random() - 0.5) * 0.25,
-          velocityY: Math.random() * 0.18 + 0.08,
-          drift: Math.random() * 2 - 1,
-          driftSpeed: Math.random() * 0.01 + 0.004,
           driftOffset: Math.random() * Math.PI * 2,
         });
       }
@@ -106,14 +67,8 @@ export default function ParticleField() {
       time += 1;
 
       const mouse = mouseRef.current;
-      const interactionRadius = 80;
+      const interactionRadius = 100;
       const pushStrength = 2;
-
-      // Center exclusion zone (where text is)
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-      const exclusionWidth = Math.min(550, canvas.width * 0.55);
-      const exclusionHeight = Math.min(350, canvas.height * 0.4);
 
       particlesRef.current.forEach((particle) => {
         // Gentle snowflake drift
@@ -145,27 +100,9 @@ export default function ParticleField() {
           particle.x = canvas.width + 10;
         }
 
-        // Calculate opacity based on position
-        let opacity = particle.baseOpacity;
-
-        // Fade based on vertical position (much denser at top)
-        const verticalFade = 1 - (particle.y / canvas.height) * 0.7;
-        opacity *= verticalFade;
-
-        // Reduce opacity in center exclusion zone (where content is)
-        const distFromCenterX = Math.abs(particle.x - centerX);
-        const distFromCenterY = Math.abs(particle.y - centerY);
-
-        if (distFromCenterX < exclusionWidth / 2 && distFromCenterY < exclusionHeight / 2) {
-          const xFade = distFromCenterX / (exclusionWidth / 2);
-          const yFade = distFromCenterY / (exclusionHeight / 2);
-          const centerFade = Math.max(xFade, yFade);
-          opacity *= Math.pow(centerFade, 0.6);
-        }
-
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
         ctx.fill();
       });
 
