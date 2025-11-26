@@ -19,7 +19,6 @@ export default function ParticleField() {
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const animationRef = useRef<number | null>(null);
-  const lastTimeRef = useRef<number>(0);
   const timeRef = useRef<number>(0);
 
   useEffect(() => {
@@ -64,37 +63,17 @@ export default function ParticleField() {
       }
     };
 
+    const handleTouchEnd = () => {
+      mouseRef.current = { x: -1000, y: -1000 };
+    };
+
     const handleMouseLeave = () => {
       mouseRef.current = { x: -1000, y: -1000 };
     };
 
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        // Page is hidden, pause animation
-        if (animationRef.current) {
-          cancelAnimationFrame(animationRef.current);
-          animationRef.current = null;
-        }
-      } else {
-        // Page is visible again, reset timing to prevent jump
-        lastTimeRef.current = 0;
-        if (!animationRef.current) {
-          animationRef.current = requestAnimationFrame(animate);
-        }
-      }
-    };
-
-    const animate = (timestamp: number) => {
-      // Calculate delta time, cap it to prevent large jumps
-      if (lastTimeRef.current === 0) {
-        lastTimeRef.current = timestamp;
-      }
-
-      const deltaTime = Math.min(timestamp - lastTimeRef.current, 50); // Cap at 50ms
-      lastTimeRef.current = timestamp;
-
-      // Increment time smoothly
-      timeRef.current += deltaTime * 0.06;
+    const animate = () => {
+      // Simple fixed time increment - no delta time needed for this effect
+      timeRef.current += 1;
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -146,19 +125,18 @@ export default function ParticleField() {
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd);
     window.addEventListener("mouseleave", handleMouseLeave);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
 
     // Start animation
-    lastTimeRef.current = 0;
     animationRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
       window.removeEventListener("mouseleave", handleMouseLeave);
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
