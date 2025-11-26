@@ -6,7 +6,7 @@ interface Particle {
   x: number;
   y: number;
   size: number;
-  opacity: number;
+  baseOpacity: number;
   velocityX: number;
   velocityY: number;
   drift: number;
@@ -35,18 +35,39 @@ export default function ParticleField() {
 
     const initParticles = () => {
       particlesRef.current = [];
-      const particleCount = Math.floor((canvas.width * canvas.height) / 8000);
 
-      for (let i = 0; i < particleCount; i++) {
+      // Dense particles at the top (like fog/mist)
+      const topDenseCount = Math.floor((canvas.width * 150) / 800);
+      for (let i = 0; i < topDenseCount; i++) {
+        // Weighted toward top - exponential distribution
+        const yWeight = Math.pow(Math.random(), 0.5);
+        const y = yWeight * canvas.height * 0.4;
+
+        particlesRef.current.push({
+          x: Math.random() * canvas.width,
+          y,
+          size: Math.random() * 1.5 + 0.3,
+          baseOpacity: Math.random() * 0.35 + 0.15,
+          velocityX: (Math.random() - 0.5) * 0.2,
+          velocityY: Math.random() * 0.15 + 0.05,
+          drift: Math.random() * 1.5 - 0.75,
+          driftSpeed: Math.random() * 0.008 + 0.003,
+          driftOffset: Math.random() * Math.PI * 2,
+        });
+      }
+
+      // Scattered particles throughout (lighter, ambient)
+      const scatteredCount = Math.floor((canvas.width * canvas.height) / 15000);
+      for (let i = 0; i < scatteredCount; i++) {
         particlesRef.current.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          size: Math.random() * 2 + 0.5,
-          opacity: Math.random() * 0.4 + 0.1,
-          velocityX: (Math.random() - 0.5) * 0.3,
-          velocityY: Math.random() * 0.2 + 0.1,
+          size: Math.random() * 1.8 + 0.4,
+          baseOpacity: Math.random() * 0.25 + 0.08,
+          velocityX: (Math.random() - 0.5) * 0.25,
+          velocityY: Math.random() * 0.18 + 0.08,
           drift: Math.random() * 2 - 1,
-          driftSpeed: Math.random() * 0.01 + 0.005,
+          driftSpeed: Math.random() * 0.01 + 0.004,
           driftOffset: Math.random() * Math.PI * 2,
         });
       }
@@ -67,14 +88,20 @@ export default function ParticleField() {
       time += 1;
 
       const mouse = mouseRef.current;
-      const interactionRadius = 120;
-      const pushStrength = 3;
+      const interactionRadius = 100;
+      const pushStrength = 2.5;
+
+      // Center exclusion zone (where text is)
+      const centerX = canvas.width / 2;
+      const centerY = canvas.height / 2;
+      const exclusionWidth = Math.min(600, canvas.width * 0.6);
+      const exclusionHeight = Math.min(400, canvas.height * 0.45);
 
       particlesRef.current.forEach((particle) => {
         // Gentle snowflake drift
         const sway = Math.sin(time * particle.driftSpeed + particle.driftOffset) * particle.drift;
 
-        particle.x += particle.velocityX + sway * 0.3;
+        particle.x += particle.velocityX + sway * 0.25;
         particle.y += particle.velocityY;
 
         // Mouse interaction - push particles away
@@ -100,9 +127,27 @@ export default function ParticleField() {
           particle.x = canvas.width + 10;
         }
 
+        // Calculate opacity based on position
+        let opacity = particle.baseOpacity;
+
+        // Fade based on vertical position (denser at top)
+        const verticalFade = 1 - (particle.y / canvas.height) * 0.6;
+        opacity *= verticalFade;
+
+        // Reduce opacity in center exclusion zone (where content is)
+        const distFromCenterX = Math.abs(particle.x - centerX);
+        const distFromCenterY = Math.abs(particle.y - centerY);
+
+        if (distFromCenterX < exclusionWidth / 2 && distFromCenterY < exclusionHeight / 2) {
+          const xFade = distFromCenterX / (exclusionWidth / 2);
+          const yFade = distFromCenterY / (exclusionHeight / 2);
+          const centerFade = Math.max(xFade, yFade);
+          opacity *= Math.pow(centerFade, 0.8);
+        }
+
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${particle.opacity})`;
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
         ctx.fill();
       });
 
