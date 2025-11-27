@@ -4,7 +4,7 @@ import TeamMember from "@/components/TeamMember";
 
 export const metadata: Metadata = {
   title: "About | GraySable",
-  description: "GraySable builds custom automation systems. Software and hardware integrated seamlessly.",
+  description: "GraySable builds custom automation systems with software and hardware working together.",
 };
 
 const teamMembers = [
@@ -29,17 +29,14 @@ export default function AboutPage() {
       <section className="py-24 relative">
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
-            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-600 block mb-6">
-              About
-            </span>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tighter uppercase leading-[0.9]">
-              Precision
+              About
               <br />
-              <span className="text-gray-500">Automation</span>
+              <span className="text-gray-500">GraySable</span>
             </h1>
             <p className="mt-10 text-xl text-gray-400 max-w-xl leading-relaxed">
-              We build custom automation systems tailored to your operation.
-              Software and hardware integrated seamlessly.
+              We build custom automation systems with software and hardware
+              working together. Tailored to your operation.
             </p>
           </AnimatedSection>
         </div>
@@ -57,9 +54,9 @@ export default function AboutPage() {
               </span>
               <h2 className="text-2xl font-bold uppercase tracking-tight mb-6">What We Do</h2>
               <p className="text-gray-400 leading-relaxed">
-                We build custom automation systems. Software and hardware integrated.
-                From workflows and integrations to PCB design and FPGA development.
-                Built to your specific requirements.
+                We build custom automation systems with software and hardware working
+                together. From workflows and integrations to PCB design and FPGA
+                development. Built to your specific requirements.
               </p>
             </AnimatedSection>
 

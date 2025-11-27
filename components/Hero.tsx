@@ -38,8 +38,8 @@ export default function Hero() {
 
         <div className="mt-12 max-w-xl animate-fade-in animation-delay-200">
           <p className="text-lg text-gray-400 leading-relaxed">
-            Custom automation systems built to your needs. Software and hardware
-            integrated seamlessly.
+            Custom automation systems with software and hardware working together.
+            Built to your needs.
           </p>
         </div>
 
