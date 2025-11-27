@@ -14,6 +14,7 @@ const teamMembers = [
     bio: "Computer engineer specializing in hardware design, software automation, and systems integration at GraySable.",
     initials: "DG",
     image: "/team/daniel.jpg",
+    imagePosition: "center",
   },
   {
     name: "Oliver Gonzales",
@@ -21,6 +22,7 @@ const teamMembers = [
     bio: "Engineer focused on algorithmic systems, data architecture, and cybersecurity at GraySable.",
     initials: "OG",
     image: "/team/oliver.jpg",
+    imagePosition: "center 20%",
   },
 ];
 
@@ -140,9 +142,9 @@ export default function AboutPage() {
             </p>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl items-stretch">
             {teamMembers.map((member, index) => (
-              <AnimatedSection key={member.name} delay={index * 0.1}>
+              <AnimatedSection key={member.name} delay={index * 0.1} className="h-full">
                 <TeamMember {...member} />
               </AnimatedSection>
             ))}
