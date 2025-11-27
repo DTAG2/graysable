@@ -36,8 +36,8 @@ export default function TeamMember({ name, role, bio, initials, image, imagePosi
           </span>
         )}
         {/* Corner accent */}
-        <div className="absolute top-4 right-4 w-3 h-3 border-t border-r border-gray-500 z-10 drop-shadow-[0_0_2px_rgba(0,0,0,0.8)]" />
-        <div className="absolute bottom-4 left-4 w-3 h-3 border-b border-l border-gray-500 z-10 drop-shadow-[0_0_2px_rgba(0,0,0,0.8)]" />
+        <div className="absolute top-4 right-4 w-3 h-3 border-t border-r border-black z-10" />
+        <div className="absolute bottom-4 left-4 w-3 h-3 border-b border-l border-black z-10" />
       </div>
 
       {/* Content */}

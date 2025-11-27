@@ -14,7 +14,7 @@ const teamMembers = [
     bio: "Computer engineer specializing in hardware design, software automation, and systems integration at GraySable.",
     initials: "DG",
     image: "/team/daniel.jpg",
-    imagePosition: "center",
+    imagePosition: "center 60%",
   },
   {
     name: "Oliver Gonzales",
@@ -22,7 +22,7 @@ const teamMembers = [
     bio: "Engineer focused on algorithmic systems, data architecture, and cybersecurity at GraySable.",
     initials: "OG",
     image: "/team/oliver.jpg",
-    imagePosition: "center 35%",
+    imagePosition: "center 20%",
   },
 ];
 
