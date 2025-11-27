@@ -18,11 +18,9 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-20 items-start">
             <AnimatedSection>
               <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-600 block mb-6">
-                Why Us
+                Why
               </span>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase">
-                Why
-                <br />
                 Gray<span className="text-gray-500">Sable</span>
               </h2>
               <p className="mt-8 text-gray-400 text-lg leading-relaxed">
