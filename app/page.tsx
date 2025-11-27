@@ -21,6 +21,8 @@ export default function Home() {
                 Why
               </span>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase">
+                Why Us
+                <br />
                 Gray<span className="text-gray-500">Sable</span>
               </h2>
               <p className="mt-8 text-gray-400 text-lg leading-relaxed">
