@@ -29,10 +29,11 @@ export default function AboutPage() {
       <section className="py-24 relative">
         <div className="max-w-5xl mx-auto px-6">
           <AnimatedSection>
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter uppercase leading-[0.9]">
+            <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-600 block mb-6">
               About
-              <br />
-              <span className="text-gray-500">GraySable</span>
+            </span>
+            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter uppercase leading-[0.9]">
+              Gray<span className="text-gray-500">Sable</span>
             </h1>
             <p className="mt-10 text-xl text-gray-400 max-w-xl leading-relaxed">
               We build custom automation systems with software and hardware
