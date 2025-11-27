@@ -38,8 +38,8 @@ export default function Hero() {
 
         <div className="mt-12 max-w-xl animate-fade-in animation-delay-200">
           <p className="text-lg text-gray-400 leading-relaxed">
-            Software, embedded systems, and hardware integrated intelligently.
-            Custom automation built to your needs.
+            Custom automation systems built to your needs. Software and hardware
+            integrated seamlessly.
           </p>
         </div>
 

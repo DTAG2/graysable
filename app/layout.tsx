@@ -12,13 +12,13 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://graysable.com"),
-  title: "GraySable | Full-Stack Automation & Hardware Design",
-  description: "Custom automation systems integrating software, embedded systems, and hardware. Built to your specific needs.",
-  keywords: ["automation", "custom hardware", "PCB design", "FPGA", "embedded systems", "AI", "machine learning", "hardware design"],
+  title: "GraySable | Precision Automation Systems",
+  description: "Custom automation systems built to your needs. Software and hardware integrated seamlessly.",
+  keywords: ["automation", "custom software", "PCB design", "FPGA", "AI", "machine learning", "hardware design"],
   authors: [{ name: "GraySable" }],
   openGraph: {
-    title: "GraySable | Full-Stack Automation & Hardware Design",
-    description: "Custom automation systems from software to hardware.",
+    title: "GraySable | Precision Automation Systems",
+    description: "Custom automation systems. Software and hardware integrated seamlessly.",
     type: "website",
     images: [
       {
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "GraySable | Custom Automation & AI Solutions",
-    description: "We build intelligent systems that drive results.",
+    title: "GraySable | Precision Automation Systems",
+    description: "Custom automation systems. Software and hardware integrated seamlessly.",
     images: ["/logo.png"],
   },
 };

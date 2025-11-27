@@ -4,14 +4,14 @@ import TeamMember from "@/components/TeamMember";
 
 export const metadata: Metadata = {
   title: "About | GraySable",
-  description: "GraySable integrates software, embedded systems, and hardware into custom automation solutions. Built to your specific needs.",
+  description: "GraySable builds custom automation systems. Software and hardware integrated seamlessly.",
 };
 
 const teamMembers = [
   {
     name: "Team Member 1",
     role: "Co-Founder",
-    bio: "Background in embedded systems, FPGA development, and signal processing. Handles hardware design and low-level systems.",
+    bio: "Background in FPGA development and signal processing. Handles hardware design when projects require physical components.",
     initials: "TM",
   },
   {
@@ -33,13 +33,13 @@ export default function AboutPage() {
               About
             </span>
             <h1 className="text-5xl md:text-6xl font-bold tracking-tighter uppercase leading-[0.9]">
-              Full-Stack
+              Precision
               <br />
               <span className="text-gray-500">Automation</span>
             </h1>
             <p className="mt-10 text-xl text-gray-400 max-w-xl leading-relaxed">
-              We integrate software, embedded systems, and hardware into custom automation solutions.
-              From PCB design to FPGA development—built to your specific needs.
+              We build custom automation systems tailored to your operation.
+              Software and hardware integrated seamlessly.
             </p>
           </AnimatedSection>
         </div>
@@ -57,9 +57,9 @@ export default function AboutPage() {
               </span>
               <h2 className="text-2xl font-bold uppercase tracking-tight mb-6">What We Do</h2>
               <p className="text-gray-400 leading-relaxed">
-                We integrate software, embedded systems, and hardware into automation solutions.
-                Whether you need custom PCBs, FPGA development, or system integration—we
-                build to your specific requirements.
+                We build custom automation systems. Software and hardware integrated.
+                From workflows and integrations to PCB design and FPGA development.
+                Built to your specific requirements.
               </p>
             </AnimatedSection>
 
@@ -92,25 +92,19 @@ export default function AboutPage() {
             </h2>
           </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-2 gap-12">
             {[
               {
                 number: "01",
                 title: "Software",
                 description:
-                  "Automation logic, workflows, integrations, dashboards. We write the code that controls your systems.",
+                  "Automation logic, workflows, integrations, dashboards. The core of every project we build.",
               },
               {
                 number: "02",
-                title: "Embedded",
-                description:
-                  "Firmware, microcontrollers, real-time systems. The layer between your software and hardware.",
-              },
-              {
-                number: "03",
                 title: "Hardware",
                 description:
-                  "PCB design, FPGA development, custom circuits. Physical hardware designed for your specific application.",
+                  "PCB design, FPGA development, and embedded devices. Custom hardware integrated with your software stack.",
               },
             ].map((value, index) => (
               <AnimatedSection key={value.title} delay={index * 0.1}>

@@ -32,7 +32,7 @@ export default function Home() {
               </p>
               <ul className="mt-10 space-y-4">
                 {[
-                  "Software, embedded, and hardware integrated",
+                  "Software and hardware integrated",
                   "Built for production",
                   "You talk to engineers, not account managers",
                 ].map((item, index) => (

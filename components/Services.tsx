@@ -11,7 +11,7 @@ const services = [
     title: "Hardware Design",
     number: "02",
     description:
-      "PCB design, FPGA development, embedded systems. From prototype to production-ready hardware that integrates with your stack.",
+      "PCB design, FPGA development, and embedded devices. Custom hardware that integrates with your software stack, from prototype to production.",
   },
 ];
 
