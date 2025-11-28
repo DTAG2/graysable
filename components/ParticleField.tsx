@@ -58,16 +58,6 @@ export default function ParticleField() {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
 
-    const handleTouchMove = (e: TouchEvent) => {
-      if (e.touches.length > 0) {
-        mouseRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
-      }
-    };
-
-    const handleTouchEnd = () => {
-      mouseRef.current = { x: -1000, y: -1000 };
-    };
-
     const handleMouseLeave = () => {
       mouseRef.current = { x: -1000, y: -1000 };
     };
@@ -139,8 +129,6 @@ export default function ParticleField() {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("touchmove", handleTouchMove, { passive: true });
-    window.addEventListener("touchend", handleTouchEnd);
     window.addEventListener("mouseleave", handleMouseLeave);
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
@@ -150,8 +138,6 @@ export default function ParticleField() {
     return () => {
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchmove", handleTouchMove);
-      window.removeEventListener("touchend", handleTouchEnd);
       window.removeEventListener("mouseleave", handleMouseLeave);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (animationRef.current) {
