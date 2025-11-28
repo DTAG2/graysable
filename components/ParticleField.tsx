@@ -21,6 +21,8 @@ export default function ParticleField() {
   const animationRef = useRef<number | null>(null);
   const timeRef = useRef<number>(0);
   const lastTimeRef = useRef<number>(0);
+  const isPausedRef = useRef<boolean>(false);
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -69,12 +71,37 @@ export default function ParticleField() {
       }
     };
 
+    const handleScroll = () => {
+      // Pause animation during scroll to prevent speed-up issues
+      if (window.scrollY <= 0) {
+        isPausedRef.current = true;
+        lastTimeRef.current = 0;
+      }
+
+      // Clear existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+
+      // Resume animation after scroll ends
+      scrollTimeoutRef.current = setTimeout(() => {
+        isPausedRef.current = false;
+        lastTimeRef.current = 0;
+      }, 150);
+    };
+
     const animate = (timestamp: number) => {
+      // Skip updates when paused (during overscroll)
+      if (isPausedRef.current) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       // Calculate delta time and cap it to prevent speed-ups after pauses
       if (lastTimeRef.current === 0) {
         lastTimeRef.current = timestamp;
       }
-      const deltaTime = Math.min(timestamp - lastTimeRef.current, 50); // Cap at 50ms (20fps minimum)
+      const deltaTime = Math.min(timestamp - lastTimeRef.current, 32); // Cap at 32ms (~30fps minimum)
       lastTimeRef.current = timestamp;
 
       // Increment time based on delta (normalized to ~60fps)
@@ -130,6 +157,7 @@ export default function ParticleField() {
     window.addEventListener("resize", resizeCanvas);
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     // Start animation
@@ -139,9 +167,13 @@ export default function ParticleField() {
       window.removeEventListener("resize", resizeCanvas);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
+      window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
+      }
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
       }
     };
   }, []);
