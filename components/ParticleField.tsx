@@ -22,7 +22,8 @@ export default function ParticleField() {
   const timeRef = useRef<number>(0);
   const lastTimeRef = useRef<number>(0);
   const isPausedRef = useRef<boolean>(false);
-  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const touchStartYRef = useRef<number>(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -88,6 +89,34 @@ export default function ParticleField() {
         isPausedRef.current = false;
         lastTimeRef.current = 0;
       }, 150);
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        touchStartYRef.current = e.touches[0].clientY;
+      }
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0 && window.scrollY <= 0) {
+        const touchY = e.touches[0].clientY;
+        // If pulling down at top of page, pause animation
+        if (touchY > touchStartYRef.current) {
+          isPausedRef.current = true;
+          lastTimeRef.current = 0;
+        }
+      }
+    };
+
+    const handleTouchEnd = () => {
+      // Resume after a delay when touch ends
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      scrollTimeoutRef.current = setTimeout(() => {
+        isPausedRef.current = false;
+        lastTimeRef.current = 0;
+      }, 300);
     };
 
     const animate = (timestamp: number) => {
@@ -158,6 +187,9 @@ export default function ParticleField() {
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchend", handleTouchEnd, { passive: true });
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     // Start animation
@@ -168,6 +200,9 @@ export default function ParticleField() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseleave", handleMouseLeave);
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
       document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
